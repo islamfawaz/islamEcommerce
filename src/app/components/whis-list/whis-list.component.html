@@ -1,0 +1,30 @@
+
+<section *ngIf="products.length>0" class="py-4">
+    <h2>Popular product</h2>
+    <div class="row g-4">
+      <div *ngFor="let product of products | slice:0:18; trackBy: trackByProductId" class="col-md-2">
+        <div class="product h-100 px-2">
+          <i *ngIf="!wishListData.includes(product._id)" (click)="addWhish(product._id)" class="fa-regular fa-heart heart"></i>
+          <i *ngIf="wishListData.includes(product._id)" (click)="removeFav(product._id)" class="cursor-pointer fa-solid fa-heart  fa-2x heart"></i>
+  
+  
+          <header role="button" [routerLink]="['/details' ,product._id]">
+            <img class="w-100" [src]="product.imageCover" [alt]="product.title">
+            <h3 class="h6">{{product.title | textcut:2}}</h3>
+            <h4 class="h6 text-main">{{product.category.name}}</h4>
+            <div class="d-flex justify-content-between">
+              <p>{{product.price | currency}}</p>
+              <div>
+                <p><i  [class.rating-color]="product.ratingsAverage>=star" *ngFor="let star of [1,2,3,4,5]" class="fa-solid fa-star"></i>{{product.ratingsAverage}}</p>
+              </div>
+            </div>
+          </header>
+          <footer>
+  
+            <button (click)="addProductItem(product._id ,btnAdd)" #btnAdd class="btn-main w-100 py-2">+ Add to Cart</button>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </section>
+  

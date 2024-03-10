@@ -1,0 +1,9 @@
+<section class="my-4">
+    <div class="row g-4 justify-content-center">
+    <div class="col-md-3"*ngFor="let category of  categories">
+        <div [routerLink]="['/categorydetails',category._id]" role="button"    class="product">
+           <img height="270" class=" w-100" [src]="category.image" [alt]="category.name">
+           <h2 class="text-main text-center ">{{category.name}}</h2>
+        </div>
+    </div>
+</div></section>
